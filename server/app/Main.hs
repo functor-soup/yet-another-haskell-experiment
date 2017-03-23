@@ -8,6 +8,7 @@ import Control.Applicative
 import Control.Monad.IO.Class
 import Database.SQLite.Simple
 import Database.SQLite.Simple.FromRow
+import System.Environment
 
 
 data Todo = Todo { id :: Int, work :: String } deriving (Generic, Show)
@@ -50,5 +51,6 @@ routes conn = get "/" (throwDataAtClient conn) >>
 
 main :: IO ()
 main = do
+        port <- fmap (maybe 3000 read) (lookupEnv "PORTZ") :: IO Int
         conn <- open "test.db"
-        scotty 3000 $ routes conn
+        scotty port $ routes conn
