@@ -9,6 +9,7 @@ import Control.Monad.IO.Class
 import Database.SQLite.Simple
 import Database.SQLite.Simple.FromRow
 import System.Environment
+import Network.Wai.Middleware.RequestLogger
 
 
 data Todo = Todo { id :: Int, work :: String } deriving (Generic, Show)
@@ -53,4 +54,4 @@ main :: IO ()
 main = do
         port <- fmap (maybe 3000 read) (lookupEnv "PORTZ") :: IO Int
         conn <- open "test.db"
-        scotty port $ routes conn
+        scotty port $ (middleware logStdoutDev >> routes conn)
