@@ -4,6 +4,9 @@ ENV PORTZ=5000
 
 COPY . /
 
+RUN apt-get -y update
+RUN apt-get install -y sqlite3
+
 RUN stack install
 RUN stack build
 RUN chmod +x sqliteStuff.sh
