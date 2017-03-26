@@ -48,7 +48,7 @@ insertData conn = do
 
 routes :: Connection -> ScottyM()
 routes conn = get "/" (throwDataAtClient conn) >>
-              post "/post" (insertData conn)
+              post "/" (insertData conn)
 
 main :: IO ()
 main = do
