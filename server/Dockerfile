@@ -7,10 +7,11 @@ COPY . /
 RUN apt-get -y update
 RUN apt-get install -y sqlite3
 
-RUN stack install
-RUN stack build
+WORKDIR /
 RUN chmod +x sqliteStuff.sh
 RUN ./sqliteStuff.sh
+
+RUN stack install
+RUN stack build
 EXPOSE 5000
-WORKDIR /
 CMD .stack-work/dist/x86_64-osx/Cabal*/build/server-exe/server-exe

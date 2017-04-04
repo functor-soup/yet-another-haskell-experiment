@@ -27,10 +27,10 @@ instance ToRow Todo where
 
 -- queries
 queryAll :: Query
-queryAll =  "SELECT * from test"
+queryAll =  "SELECT * from testbaka"
 
 insertInto :: Query
-insertInto = "INSERT INTO test (str) VALUES (?)" 
+insertInto = "INSERT INTO testbaka (str) VALUES (?)" 
 
 
 throwDataAtClient :: Connection -> ActionM()
@@ -53,5 +53,5 @@ routes conn = get "/" (throwDataAtClient conn) >>
 main :: IO ()
 main = do
         port <- fmap (maybe 3000 read) (lookupEnv "PORTZ") :: IO Int
-        conn <- open "test.db"
+        conn <- open "testbaka.db"
         scotty port $ (middleware logStdoutDev >> routes conn)
