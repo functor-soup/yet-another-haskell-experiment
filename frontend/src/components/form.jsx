@@ -4,16 +4,17 @@ import {submitJob} from '../actions.js';
 
 const Formez = ({dispatch}) => {
 
- let oo;
+    let oo;
 
- return (<div>
-            <input type="text" ref={x => {oo = x}} 
-	      onSubmit={e => {e.preventDefault(); 
-		        dispatch(submitJob(oo.value))}}
-       	      />	
-	</div>)
+    return (<div>
+        <form onSubmit={e => {e.preventDefault();
+		        dispatch(submitJob(oo.value))}}>
+            <input type="text" ref={x => {oo = x}}/>
+            <button type="submit">Add Job</button>
+        </form>
+    </div>)
 
-}
+};
 
 const CustomForm = connect()(Formez);
 
