@@ -32,6 +32,8 @@ executable server-client-exe
                      , lens
                      , random
                      , bytestring
+                     , directory 
+                     , wai-middleware-static
   default-language:    Haskell2010
 
 test-suite server-client-test
