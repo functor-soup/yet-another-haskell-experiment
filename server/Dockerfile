@@ -14,4 +14,4 @@ RUN ./sqliteStuff.sh
 RUN stack install
 RUN stack build
 EXPOSE 5000
-CMD .stack-work/dist/x86_64-osx/Cabal*/build/server-exe/server-exe
+CMD stack exec server-exe
