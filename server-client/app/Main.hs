@@ -17,6 +17,9 @@ import Network.Wai.Middleware.Static
 locationOfFrontend :: String
 locationOfFrontend = "/../frontend/dist"
 
+defaultOtherBackend :: String
+defaultOtherBackend = "http://localhost:5000" 
+
 type DataRoute = String
 
 data Todo = Todo { id :: Int, work :: String } deriving (Generic, Show)
@@ -62,7 +65,8 @@ staticMiddleware  x = middleware . staticPolicy . addBase $ x
 main :: IO ()
 main = do
          cwd <- getCurrentDirectory 
+         route <-  fmap (maybe defaultOtherBackend read) (lookupEnv "OTHER") :: IO String
          scotty 4000 $ (middleware logStdoutDev >> 
               staticMiddleware (cwd++locationOfFrontend) >>
-              routes "http://localhost:5000" >> 
+              routes route >> 
               serveFront cwd)
