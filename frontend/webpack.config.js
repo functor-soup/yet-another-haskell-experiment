@@ -5,7 +5,7 @@ const path = require('path');
 const config = {
     entry: './src/app.jsx',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../server-client/static'),
         filename: 'my-first-webpack.bundle.js'
     },
     module: {
