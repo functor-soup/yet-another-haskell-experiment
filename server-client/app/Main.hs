@@ -15,7 +15,7 @@ import Network.Wai.Middleware.RequestLogger
 import Network.Wai.Middleware.Static
 
 locationOfFrontend :: String
-locationOfFrontend = "/../frontend/dist"
+locationOfFrontend = "/frontend/dist"
 
 defaultOtherBackend :: String
 defaultOtherBackend = "http://localhost:5000" 
